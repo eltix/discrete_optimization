@@ -45,6 +45,18 @@ def solve_it(input_data):
             taken[item.index] = 1
             value += item.value
             weight += item.weight
+
+    weights = sp.array([int(item.weight) for item in items])
+    values = sp.array([item.value for item in items])
+    idj = greedy(weights, values, item_count, capacity)
+    # Filling up
+    for j in idj:
+        if (not j in(list(idx))):
+            item = items[j]
+            if (weight + item.weight) <= capacity:
+                taken[item.index] = 1
+                value += item.value
+                weight += item.weight   
     
     print 'total weight =', weight
     print 'capacity=', capacity
